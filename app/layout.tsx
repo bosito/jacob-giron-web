@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { NextProvider } from "./providers/NextProvider";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import HeaderNavigation from "./components/HeaderNavigation";
+import Player from "./components/Player";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <NextProvider>
+        <body className="bg-slate-900 min-h-screen relative">
+          <HeaderNavigation />
+          {children}
+          <Player />
+        </body>
+      </NextProvider>
     </html>
   );
 }
